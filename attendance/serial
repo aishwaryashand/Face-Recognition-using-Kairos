@@ -1,0 +1,23 @@
+enroll
+verify
+recognize
+detect
+gallery-list
+	view
+	view subject
+	remove
+	remove subject 
+
+/home/adhoc/Desktop/attendance/Gallery/aishwarya
+
+#os.system(scp -i ../Downloads/warya.pem "subject_id" ubuntu@172.31.46.125)'
+
+'''
+with open('data.json', 'w') as outfile:
+    json.dump(response_body, outfile)
+
+json_data=open('data.json').read()
+
+data = json.loads(json_data)
+print(data['face_id'])
+'''
