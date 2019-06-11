@@ -3,8 +3,8 @@ import requests
 
 headers = {
   'Content-Type': 'application/json',
-  "app_id": "437f528e",
-  "app_key": "79b5ee9c50d854b4647a916a121891ea"
+  "app_id": "01646bc9",
+  "app_key": "981a8af72b5b9e19a7d29e3938c70749"
 }
 
 url = "http://api.kairos.com/gallery/list_all"
