@@ -2,12 +2,13 @@
 import cv2
 import os
 
-def name1():
-	name=raw_input("enter name: ")
+'''def name1():
+	name=raw_input("enter name for image: ")
 	name=name+".jpg"
 	return name
 
 x= name1()
+'''
 cap=cv2.VideoCapture(0)
 while True:
 	status,frame=cap.read()
@@ -15,8 +16,8 @@ while True:
 	# showing current image
 	cv2.imshow("current image",frame)
 	if cv2.waitKey (1) & 0xFF == ord('q'):
-		path = '/home/adhoc/Desktop/attendance/Gallery'
-		cv2.imwrite(os.path.join(path , x),frame)	
+		path = '/home/adhoc/Desktop/attendance./Gallery'
+		cv2.imwrite(os.path.join(path , "test.jpg"),frame)	
 		break
 
 cv2.destroyAllWindows()
