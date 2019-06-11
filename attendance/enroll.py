@@ -1,48 +1,23 @@
-#!/usr/bin/python2
-
+#!/usr/bin/env python
+import cv2
 from urllib2 import Request, urlopen
-import os
-import camera
+import base64
 import json
-import objectpath
+from add_student import name, roll, Id
 
-nam=camera.x
-path1="/home/adhoc/Desktop/attendance/Gallery/"+nam
-
-# copy image captured to instance
-os.system("scp -i /home/adhoc/Downloads/warya.pem  "+path1+"  ubuntu@18.222.253.203:/var/www/html/images")
-
-path2="http://18.222.253.203/images/"+nam
-
-values ="""
- {
-    "image": "%s", 
-    "subject_id": "%s",
+encoded_string = base64.b64encode(open("dataset/user" + Id + "/User."+ Id +".1" + ".jpg", 'r').read())
+payload_dict = {
+    "image":encoded_string,
+    "subject_id": name,
     "gallery_name": "MyGallery"
-  }
-"""%(path2,nam)
-
-headers = {
-  'Content-Type': 'application/json',
-  "app_id": "437f528e",
-  "app_key": "79b5ee9c50d854b4647a916a121891ea"
 }
-request = Request('https://api.kairos.com/enroll', data=values, headers=headers)
-
+payload = json.dumps(payload_dict)
+headers={
+'Content-Type':'application/json',
+"app_id": "01646bc9",
+"app_key": "981a8af72b5b9e19a7d29e3938c70749"
+}
+request = Request('https://api.kairos.com/enroll', data=payload, headers=headers)
 response_body = urlopen(request).read()
-print "You have been enrolled {}.".format(nam)
-'''
-with open('data.json', 'w') as outfile:
-    json.dump(response_body, outfile)
-
-with open ("data.json") as datafile: data=json.load(datafile)  #=open('data.json').read()
-
-#data = json.loads(json_data)
-#print(data[5])
-
-jsonnn_tree = objectpath.Tree(data['response_body'])
-print jsonnn_tree
-'''
-
-
+print(response_body)
 
